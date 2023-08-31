@@ -14,7 +14,7 @@ export default class AssignmentForm extends LightningElement {
              getAssignments({assignmentRecordJSON : JSON.stringify(this.assignmentFormData)})
             .then(result => {
                 this.toastEventFire('Success',`Record Inserted Successfully !`,'Success','dismissable'); 
-               const inputFields = this.template.querySelectorAll('.inpFld');
+                 this.publishMC();
                this.assignmentFormData = {};
             })
             .catch(error => {
@@ -62,7 +62,7 @@ export default class AssignmentForm extends LightningElement {
             mode: mode
         });
         this.dispatchEvent(e);
-        this.publishMC();
+       
         
     }
 
