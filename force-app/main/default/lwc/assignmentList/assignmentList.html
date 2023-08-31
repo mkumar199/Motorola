@@ -1,0 +1,51 @@
+<template>
+    <lightning-card  title="Assignment List" >
+    <template  if:true={assignmentRecords}>
+        <div class="slds-p-around_small">
+        <lightning-layout>
+            <lightning-layout-item>
+                <lightning-combobox
+                    name="page"
+                    value={pageSize}
+                    label="Page Size"
+                    placeholder="Select Page Size"
+                    options={options}
+                    onchange={handleRecordsPerPage} label-hidden>
+                </lightning-combobox>
+            </lightning-layout-item>
+            <div class="slds-p-top_large">
+                <lightning-layout-item >
+                    <lightning-button disabled={disableFirst} icon-name="utility:jump_to_left" label="First" class="slds-p-horizontal_x-small" alternative-text="first page" onclick={firstPage}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item>
+                    <lightning-button disabled={disableFirst} icon-name="utility:chevronleft" label="Previous" alternative-text="Previous" onclick={previousPage}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-p-left_small">
+                    <span class="slds-badge">Showing {pageNumber} &nbsp;of&nbsp; {totalPages} &nbsp;&nbsp;Page(s)</span>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-p-left_small">
+                    <lightning-button disabled={disableLast} icon-name="utility:chevronright" label="Next" alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_x-small" icon-position="right"></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item>
+                    <lightning-button disabled={disableLast} icon-name="utility:jump_to_right" label="Last" alternative-text="last page" onclick={lastPage} icon-position="right"></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-p-left_small">
+                    <span class="slds-badge">Total Assignment Records : {totalAssigmentRecords}</span>
+                </lightning-layout-item>
+            </div>
+            <lightning-layout-item class="slds-p-left_small" size ="4">
+                <lightning-input type="search"  label="Search Assignments" onchange={handleAssignSearch}></lightning-input>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={assignmentRecordsToDisplay}
+                columns={columns}
+                hide-checkbox-column="true">
+        </lightning-datatable>
+    </div>
+    </template>
+    </lightning-card>
+</template>
